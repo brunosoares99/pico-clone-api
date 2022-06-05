@@ -9,10 +9,11 @@ const cors = require('cors');
 app.use(cors());
 dotenv.config();
 const port = process.env.PORT;
+const origin = process.env.ORIGIN;
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://127.0.0.1:5500",
+        origin: origin,
         methods: "GET,POST",
     }
 });
@@ -23,7 +24,6 @@ io.on('connection', (socket) => {
     });
     socket.on('send_message', (data) => {
         console.log(data);
-        // console.log('user send message');
         socket.emit("receive_message", data);
     });
 });

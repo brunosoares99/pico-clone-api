@@ -11,6 +11,7 @@ const cors = require('cors');
 app.use(cors());
 dotenv.config();
 const port = process.env.PORT;
+const socketPort = process.env.SOCKET_PORT;
 const origin = process.env.ORIGIN
 
 const server = http.createServer(app);
@@ -38,7 +39,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-server.listen(3001, () => {
+server.listen(socketPort, () => {
   console.log("SERVER IS RUNNING");
 });
 
